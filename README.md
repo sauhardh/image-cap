@@ -59,41 +59,8 @@ Unlike naive fine-tuning attempts, this project implements several specialized e
 
 ## 📐 Overall Architecture & Flowcharts
 
-### 1. End-to-End System Pipeline
 
-```mermaid
-flowchart TD
-    subgraph DataPrep ["Data Preprocessing & Adaptation"]
-        A[Flickr8k Nepali Dataset] --> B[Parse Captions & Normalization]
-        B --> C[Clean Punctuation & Purna Biram '।']
-        C --> D[Strict Image-Level Split: 6k Train / 1k Val / 1k Test]
-        D --> E[Devanagari Vocabulary Extraction]
-        E --> F[Reserve [DEC] & [ENC] Tokens]
-        F --> G[Expand Tokenizer Vocab: 30,522 -> 37,051]
-        G --> H[Resize BLIP Model Embeddings]
-    end
-
-    subgraph TrainingLoop ["Two-Tier Training & Evaluation"]
-        H --> I[BLIP Architecture]
-        I --> J[Differential Optimizer: 1e-4 Embeddings / 1e-5 Backbone]
-        J --> K[Cosine Warmup Scheduler + FP16 AMP]
-        K --> L[Forward Pass with Gradient Checkpointing]
-        L --> M[Validation CIDEr & BLEU Evaluation]
-        M -->|Best CIDEr Checkpoint| N[Save best_model/]
-    end
-
-    subgraph Inference ["Production Inference (caption.py)"]
-        O[New Image: .jpg / .png] --> P[ViT Preprocessor 384x384]
-        N --> Q[Loaded Nepali-BLIP Model]
-        P --> Q
-        Q --> R[Beam Search Decoding: beams=5, min_len=3, no_repeat_ngram=2]
-        R --> S[Generated Nepali Caption + CSV/TXT Export]
-    end
-```
-
----
-
-### 2. Model Architecture & Cross-Attention Mechanics
+### 1. Model Architecture & Cross-Attention Mechanics
 
 ```mermaid
 flowchart LR
@@ -117,7 +84,7 @@ flowchart LR
 
 ---
 
-### 3. Tokenizer Adaptation Pipeline
+### 2. Tokenizer Adaptation Pipeline
 
 ```mermaid
 sequenceDiagram
