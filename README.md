@@ -256,11 +256,3 @@ To retrain or run the notebook:
 3. Execute all cells. Checkpoints and evaluation metrics (`experiment.json`, `final_metrics.json`, `best_model/`) are exported to `/kaggle/working/nepali_blip/`.
 
 ---
-
-
-| Phase  | Milestone                                                    | Expected Deliverable                                      |     Target Venue      |
-| :----: | :----------------------------------------------------------- | :-------------------------------------------------------- | :-------------------: |
-| **Q1** | Akshara Tokenizer (HGAT) + Optimal Transport Cross-Attention | Novel script-aware architecture & open-source tokenizer   |    **ACL / EMNLP**    |
-| **Q2** | NepalVL-Bench Dataset + Cultural Hallucination Framework     | 10k culturally curated benchmark & causal debiasing study |    **CVPR / ICCV**    |
-| **Q3** | Socio-Pragmatic DPO (SPH-DPO) & Morpheme-CIDEr metric        | Alignment framework with human evaluation study           |   **NeurIPS / ACL**   |
-| **Q4** | Unified Cross-Lingual Manifold Distillation System           | End-to-end foundation model for South Asian VLP           | **IEEE TPAMI / IJCV** |
